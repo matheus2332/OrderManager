@@ -40,9 +40,9 @@ Esta fila então possui um "consumer" que irá verificar se o pedido foi confirm
 
 ---
 
-## 📦 Backend (Node.js via Docker)
+## 🚀 Backend (.Net via Docker)
 
-1. Suba o backend com Docker Compose:
+1. No diretorio principal ```cd OrderManager```, suba o backend com Docker Compose:
 
 ```bash
 docker compose up -d --build
@@ -51,6 +51,32 @@ docker compose up -d --build
 2. A API estará disponível em: http://localhost:5009
 
 Podes acender http://localhost:5009/swagger para ter os endpoints.
+
+## 🚀 Backend com RabbitMQ (sem Docker)
+
+1. RabbitMQ rodando localmente (pode usar Docker ou instalação nativa)
+> Se quiser usar Docker para o RabbitMQ:
+
+```bash
+docker run -d --hostname rabbit --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+2. Acesse a pasta do projeto backend .NET:
+```bash
+cd dotnet-backend
+```
+3. Restaure pacotes:
+```bash
+dotnet restore
+```
+
+4. Complie o projeto
+```bash
+dotnet build
+```
+5. Execute a app
+```bash
+dotnet run
+```
 
 ## 🌐 Frontend (React)
 
