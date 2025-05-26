@@ -142,6 +142,8 @@ O frontend e backend rodam em portas diferentes.
 
 Durante o desenvolvimento, o frontend se comunica diretamente com o backend local.
 
+Caso tenha duvidas, não exite em chamar-me
+
 
 
 
