@@ -2,8 +2,25 @@ using OrderManager.Application.Interfaces;
 using OrderManager.Application.Services;
 using OrderManager.Infrastructure.Messaging;
 using OrderManager.Infrastructure.Policies;
+using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+var rabbitConfig = builder.Configuration.GetSection("RabbitMQ");
+
+builder.Services.AddSingleton(sp => new ConnectionFactory
+{
+    HostName = rabbitConfig.GetValue<string>("HostName"),
+    UserName = rabbitConfig.GetValue<string>("UserName"),
+    Password = rabbitConfig.GetValue<string>("Password"),
+    Port = rabbitConfig.GetValue<int>("Port")
+});
 
 // Add services to the container.
 builder.Services.AddSingleton<IInventoryService, InMemoryInventoryService>();
@@ -39,12 +56,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseCors("AllowAll");
 
 app.Run();

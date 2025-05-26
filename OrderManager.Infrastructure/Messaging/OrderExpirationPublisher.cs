@@ -13,16 +13,9 @@ namespace OrderManager.Infrastructure.Messaging
         private readonly IReservationPolicy _policy;
         private readonly Dictionary<string, object> _args;
 
-        public OrderExpirationPublisher(IReservationPolicy policy)
+        public OrderExpirationPublisher(IReservationPolicy policy, ConnectionFactory factory)
         {
             _policy = policy;
-            var factory = new ConnectionFactory
-            {
-                HostName = "rabbitmq",
-                UserName = "guest",
-                Password = "guest",
-                Port = 5672
-            };
             _args = new Dictionary<string, object>
             {
                 { MessageNames.Exchange.DeadLetter, MessageNames.Exchange.OrderExpired }

@@ -12,16 +12,9 @@ namespace OrderManager.Infrastructure.Messaging
         private readonly IOrderService _orderService;
         private readonly IModel _channel;
 
-        public OrderExpirationConsumer(IOrderService orderService)
+        public OrderExpirationConsumer(IOrderService orderService, ConnectionFactory factory)
         {
             _orderService = orderService;
-            var factory = new ConnectionFactory
-            {
-                HostName = "rabbitmq",
-                UserName = "guest",
-                Password = "guest",
-                Port = 5672 
-            };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
         }
