@@ -98,7 +98,7 @@ npm install
 npm run dev
 ```
 
-4. Acesse o app em: http://localhost:5173
+4. Acesse o app em: http://localhost:3000
 > ⚠️ Certifique-se que o frontend está configurado para fazer chamadas para http://localhost:5009 ou ajuste a "const API_BASE" no OrderManager.tsx .
 
 
