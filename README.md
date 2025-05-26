@@ -4,7 +4,18 @@ Aplicação para gerenciamento de pedidos, com backend em Node.js + TypeScript e
 
 O objetivo é fazer um pedido (order) com uma determinada quantidade, limitado ao estoque de (100) como foi definido,
 efetuando primeiramente uma "reserva" e posteriormente uma confirmação.
-Entretanto se caso a confirmação da reserva não for confirmada no tempo maximo de 10 minutos, a quantidade reservada será retornada ao estoque.
+Entretanto se caso a confirmação da reserva não for confirmada no tempo maximo de 1 minuto, a quantidade reservada será retornada ao estoque.
+
+> Defini este tempo de 1 minuto para facilitarmos os testes entretanto isso pode ser facilmente alterado no ficheiro [InMemoryReservationPolicy.cs](http://google.com/)
+ ```c#
+public class InMemoryReservationPolicy : IReservationPolicy
+{
+    public TimeSpan GetReservationTime()
+    {
+        return TimeSpan.FromMinutes(1);
+    }
+}
+```
 
 # Solução relacionada ao tempo de reserva
 Para solucionar o tema da reserva, usei o RabbitMQ para gerenciar as mensagens.
