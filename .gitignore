@@ -1,0 +1,48 @@
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+*.dll
+*.exe
+*.app
+*.log
+*.obj
+*.pdb
+*.vspscc
+*.vssscc
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.VC.db
+
+## Rider
+.idea/
+
+## Visual Studio
+.vs/
+.vscode/
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+## Others
+bin/
+obj/
+packages/
+TestResults/
+
+# Dotnet watch/EF migrations
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
