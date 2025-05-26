@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"   
+      - "15672:15672" 
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      
+  ordermanager-api:
+    build:
+      context: .
+      dockerfile: OrderManager.Api/Dockerfile
+    container_name: ordermanager-api
+    depends_on:
+      - rabbitmq
+    environment:
+      RabbitMQ__HostName: rabbitmq
+      RabbitMQ__UserName: guest
+      RabbitMQ__Password: guest
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "5009:8080"
