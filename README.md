@@ -6,7 +6,7 @@ O objetivo é fazer um pedido (order) com uma determinada quantidade, limitado a
 efetuando primeiramente uma "reserva" e posteriormente uma confirmação.
 Entretanto se caso a confirmação da reserva não for confirmada no tempo maximo de 1 minuto, a quantidade reservada será retornada ao estoque.
 
-> Defini este tempo de 1 minuto para facilitarmos os testes entretanto isso pode ser facilmente alterado no ficheiro [InMemoryReservationPolicy.cs](http://google.com/)
+> Defini este tempo de 1 minuto para facilitarmos os testes entretanto, isso pode ser facilmente alterado no ficheiro [InMemoryReservationPolicy.cs](http://google.com/)
  ```c#
 public class InMemoryReservationPolicy : IReservationPolicy
 {
